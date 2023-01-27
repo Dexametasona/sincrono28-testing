@@ -31,10 +31,21 @@ describe('AppComponent', () => {
   it(`formulario inicia vacio`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     let user=(<HTMLInputElement>document.getElementById('user'));
+    let pass=(<HTMLInputElement>document.getElementById('pass'));
+
+    
+    expect(user.value).toEqual('')
+    expect(pass.value).toEqual('')
+  });
+
+  it(`formulario formulario valido`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    let user=(<HTMLInputElement>document.getElementById('user'));
     let pass=(<HTMLInputElement>document.getElementById('user'));
 
     
     expect(user.value).toEqual('')
     expect(pass.value).toEqual('')
   });
+
 });
