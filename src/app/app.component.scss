@@ -1,0 +1,22 @@
+:host{
+    background-color: rgba(199, 197, 197, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+form{
+    display: grid;
+    grid-template: repeat(3, min-content)/1fr 3fr;
+    gap: 1rem;
+    label{
+        font-family: 'Roboto', sans-serif;
+    }
+
+    div:nth-child(5){
+        grid-column: span 2;
+        display: flex;
+        justify-content: center;
+    }
+}
