@@ -2,6 +2,7 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -28,24 +29,38 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Formulario para test');
   });
 
-  it(`formulario inicia vacio`, () => {
+  it('formulario vacio',()=>{
     const fixture = TestBed.createComponent(AppComponent);
-    let user=(<HTMLInputElement>document.getElementById('user'));
-    let pass=(<HTMLInputElement>document.getElementById('pass'));
+    const app = fixture.componentInstance;
 
-    
-    expect(user.value).toEqual('')
-    expect(pass.value).toEqual('')
+    expect(app.form.valid).toBe(false)
   });
 
-  it(`formulario formulario valido`, () => {
+  it('formulario validado',()=>{
     const fixture = TestBed.createComponent(AppComponent);
-    let user=(<HTMLInputElement>document.getElementById('user'));
-    let pass=(<HTMLInputElement>document.getElementById('user'));
+    const app = fixture.componentInstance;
 
-    
-    expect(user.value).toEqual('')
-    expect(pass.value).toEqual('')
+    let user=app.form.controls['user'];
+    let pass=app.form.controls['pass'];
+    user.setValue('olluco')
+    pass.setValue('lenteja')
+    expect(app.form.valid).toBe(true)
+  })
+
+  it(' mensaje del formulario',()=>{
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+
+    let user=app.form.controls['user'];
+    let pass=app.form.controls['pass'];
+    user.setValue('olluco')
+    pass.setValue('lenteja')
+
+    let boton=fixture.debugElement.query(By.css('#boton'))
+    boton.nativeElement.click()
+
+    expect(app.mensaje).toEqual('Formulario enviado')
   });
+
 
 });

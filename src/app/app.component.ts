@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +9,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AppComponent implements OnInit{
   title = 'Formulario para test';
   mensaje!:string|null
-  public form!:FormGroup;
+  public form= new FormGroup({
+    user:new FormControl('', [Validators.required, Validators.minLength(5)]),
+    pass:new FormControl('', [Validators.required, Validators.minLength(4)])
+  })
 
-  constructor(private fb:FormBuilder){}
+  constructor(){}
 
   ngOnInit(): void {
-    this.form=this.fb.group({
-      user:['', [Validators.required, Validators.minLength(4)]],
-      pass:['', [Validators.required, Validators.minLength(4)]]
-    })
+    
   }
 
   enviar():void{
-    console.log(this.form.value)
+    this.mensaje='Formulario enviado'
   }
 
 }
