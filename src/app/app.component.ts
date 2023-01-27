@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent implements OnInit{
   title = 'Formulario para test';
-  mensaje!:string
+  mensaje!:string|null
   public form!:FormGroup;
 
   constructor(private fb:FormBuilder){}
@@ -22,6 +22,6 @@ export class AppComponent implements OnInit{
 
   enviar():void{
     console.log(this.form.value)
-    this.mensaje='Formulario enviado'
   }
+
 }
